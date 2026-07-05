@@ -1,0 +1,11 @@
+.venv/
+.git/
+mlruns/
+data/
+notebooks/
+screenshots/
+report/
+docs/
+tests/
+__pycache__/
+*.md
