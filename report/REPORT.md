@@ -2,7 +2,7 @@
 
 **Course:** Machine Learning Operations (MLOps) AIMLCZG523 — Assignment 01
 **Author:** Sahithi Siripuram
-**Repository:** _<link after push>_
+**Repository:** https://github.com/SahithiSiripuram/heart-disease-mlops
 **Deployed API:** _<URL or local access instructions after deployment>_
 
 ---
@@ -154,4 +154,4 @@ uvicorn src.api.main:app --reload
 
 ## 10. Repository link
 
-_<GitHub URL after push>_
+https://github.com/SahithiSiripuram/heart-disease-mlops
