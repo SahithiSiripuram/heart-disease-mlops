@@ -9,6 +9,7 @@ venv/
 # MLflow
 mlruns/
 mlartifacts/
+mlflow.db
 
 # Data (keep raw dataset out of git; download script fetches it)
 data/raw/*
@@ -16,9 +17,9 @@ data/processed/*
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 
-# Models
-models/*.pkl
-models/*.joblib
+# Models (training artifacts stay out of git; CI/Docker rebuild them)
+models/*
+!models/.gitkeep
 
 # OS / editor
 .DS_Store
@@ -28,5 +29,3 @@ models/*.joblib
 # Env
 .env
 
-# keep the models dir present for Docker builds
-!models/.gitkeep
