@@ -1,0 +1,26 @@
+# Data & ML
+pandas
+numpy
+scikit-learn
+ucimlrepo
+
+# Visualization
+matplotlib
+seaborn
+
+# Experiment tracking
+mlflow
+
+# API & monitoring
+fastapi
+uvicorn[standard]
+pydantic
+prometheus-client
+
+# Testing & lint
+pytest
+httpx
+flake8
+
+# Serialization
+joblib
