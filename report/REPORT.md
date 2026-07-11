@@ -3,7 +3,9 @@
 **Course:** Machine Learning Operations (MLOps) AIMLCZG523 — Assignment 01
 **Author:** Sahithi Siripuram
 **Repository:** https://github.com/SahithiSiripuram/heart-disease-mlops
-**Deployed API:** _<URL or local access instructions after deployment>_
+**Deployed API:** local Kubernetes (colima/k3s v1.35), 2 replicas behind a
+LoadBalancer service — reachable at `http://localhost:8080` via
+`kubectl port-forward svc/heart-disease-api 8080:80`
 
 ---
 
@@ -39,7 +41,6 @@ containerization, Kubernetes deployment, and monitoring.
                                           └─────────────────────┘
 ```
 
-_(Replace with rendered diagram if preferred.)_
 
 ## 2. Data acquisition & EDA
 
@@ -60,8 +61,9 @@ Key EDA findings (full analysis in `notebooks/01_eda.ipynb`):
 - Mixed numeric/categorical features motivate a ColumnTransformer with scaling
   (needed by logistic regression) and one-hot encoding.
 
-**[Screenshot: class balance plot]**
-**[Screenshot: correlation heatmap]**
+![Class balance and target distribution](../screenshots/05_eda_class_balance.png)
+
+![Correlation heatmap](../screenshots/06_eda_correlation_heatmap.png)
 
 ## 3. Feature engineering & modelling
 
@@ -94,8 +96,9 @@ model logging: best hyperparameters, all test metrics + CV ROC-AUC, the ROC
 curve and confusion matrix as figures, and the fitted pipeline as a model
 artifact.
 
-**[Screenshot: MLflow experiment run list]**
-**[Screenshot: MLflow run detail — metrics and artifacts]**
+![MLflow training runs for the experiment](../screenshots/01_mlflow_experiment_runs.png)
+
+![MLflow run detail: metrics, parameters and run info](../screenshots/02_mlflow_run_detail.png)
 
 ## 5. Model packaging & reproducibility
 
@@ -117,7 +120,7 @@ artifact.
 
 The pipeline fails on any lint error, test failure, or build/smoke-test error.
 
-**[Screenshot: green Actions run showing both jobs]**
+![Green CI run with both jobs passing](../screenshots/08_ci_run_jobs.png)
 
 ## 7. Containerization & deployment
 
@@ -127,8 +130,14 @@ The pipeline fails on any lint error, test failure, or build/smoke-test error.
   requests+limits, liveness/readiness probes on `/health`) and
   `deployment/service.yaml` (LoadBalancer → 8000).
 
-**[Screenshot: kubectl get pods/svc]**
-**[Screenshot: /predict response via the LoadBalancer]**
+Deployed on a local k3s cluster (colima). Both replicas pass their probes and
+the model answers through the cluster service; on colima the LoadBalancer's
+external IP is VM-internal, so the service is accessed from the host with
+`kubectl port-forward`:
+
+![kubectl pods/services and a /predict call through the cluster](../screenshots/09_kubectl_pods_svc_predict.png)
+
+![Live /predict execution (Swagger UI)](../screenshots/03_api_predict_swagger.png)
 
 ## 8. Monitoring & logging
 
@@ -137,7 +146,7 @@ The pipeline fails on any lint error, test failure, or build/smoke-test error.
   `api_request_latency_seconds` histogram, `predictions_total` (by class) —
   ready to scrape with Prometheus/Grafana.
 
-**[Screenshot: /metrics output or Grafana panel]**
+![Prometheus /metrics with live request counters and latency histograms](../screenshots/04_api_prometheus_metrics.png)
 
 ## 9. Setup instructions
 
