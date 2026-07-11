@@ -29,3 +29,4 @@ models/*
 # Env
 .env
 
+.pytest_cache/
