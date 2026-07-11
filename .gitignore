@@ -17,9 +17,8 @@ data/processed/*
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 
-# Models (training artifacts stay out of git; CI/Docker rebuild them)
-models/*
-!models/.gitkeep
+# Assignment PDFs stay local
+docs/
 
 # OS / editor
 .DS_Store

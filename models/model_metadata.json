@@ -1,0 +1,9 @@
+{
+  "name": "logistic_regression",
+  "test_accuracy": 0.8688524590163934,
+  "test_precision": 0.8125,
+  "test_recall": 0.9285714285714286,
+  "test_f1": 0.8666666666666667,
+  "test_roc_auc": 0.9577922077922079,
+  "cv_roc_auc": 0.8995062103757755
+}

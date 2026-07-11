@@ -35,9 +35,9 @@ estimator pipeline; the best model by test ROC-AUC is exported for serving.
 ├── tests/              # pytest: preprocessing + API contract tests
 ├── deployment/         # Kubernetes Deployment + LoadBalancer Service
 ├── .github/workflows/  # CI: lint → test → train → docker build + smoke test
+├── models/             # exported best model + metadata
 ├── screenshots/        # MLflow / CI / deployment evidence for the report
-├── report/             # final written report
-└── docs/               # assignment PDFs
+└── report/             # final written report
 ```
 
 ## Setup
